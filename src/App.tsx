@@ -1,26 +1,34 @@
+// MODULES
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+// COMPONENTS
+import {Footer} from "src/components/footer/footer";
+import {Header} from "src/components/header/header";
+import {Label} from "src/components/label/label";
+import {StatusWidget} from "src/components/status-widget/status-widget";
+import {SensorTile} from "src/components/sensor-tile/sensor-tile";
+import {ISensorData} from "src/types/generic";
+
+// TODO: delete
+const mock: ISensorData = {
+    id: 'sensorId',
+    name: "Humidity",
+    connected: true,
+    unit: "%",
+    value: "60",
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <Header/>
+            <main>
+                <Label/>
+                <SensorTile {...mock}/>
+            </main>
+            <Footer/>
+        </>
+    );
 }
 
 export default App;
