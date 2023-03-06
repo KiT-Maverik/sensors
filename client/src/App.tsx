@@ -5,7 +5,6 @@ import React from 'react';
 import {Footer} from "src/components/footer/footer";
 import {Header} from "src/components/header/header";
 import {Label} from "src/components/label/label";
-import {StatusWidget} from "src/components/status-widget/status-widget";
 import {SensorTile} from "src/components/sensor-tile/sensor-tile";
 import {ISensorData} from "src/types/generic";
 
@@ -32,3 +31,5 @@ function App() {
 }
 
 export default App;
+
+// TODO: Lint
