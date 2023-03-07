@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-// TODO: resolve
 
 //COMPONENTS
 import {ReactComponent as EnabledIcon} from "src/resources/filter_enabled.svg";

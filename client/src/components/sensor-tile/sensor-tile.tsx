@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-// TODO: resolve
 
 //COMPONENTS
 import {Typography} from "src/components/typography/typography";

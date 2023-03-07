@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-// TODO: resolve
 
 // STYLE
 import * as style from 'src/components/header/header.style';

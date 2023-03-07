@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-// TODO: resolve
 
 // MODULES
 import {useCallback, useMemo} from "react";
