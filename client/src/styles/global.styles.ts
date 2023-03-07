@@ -40,6 +40,7 @@ const globalStyles = css`
 		flex-direction: column;
 		gap: ${theme.spacing.m}px;
 		margin: 0 auto;
+		min-width: 600px;
 	},
 	
 	h1, h2, p {
