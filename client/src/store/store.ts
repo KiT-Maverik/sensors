@@ -10,11 +10,13 @@ import {pm25Reducer} from "src/store/sensors/pm25.slice";
 import {pressureReducer} from "src/store/sensors/pressure.slice";
 import {temperatureReducer} from "src/store/sensors/temperature.slice";
 import {windReducer} from "src/store/sensors/wind.slice";
+import {displayedSensorsReducer} from "src/store/filter/displayed-sensors.slice";
 
 export const store = configureStore({
     reducer: {
         filter: filterReducer,
         availableSensors: availableSensorsReducer,
+        displayedSensors: displayedSensorsReducer,
         humidity: humidityReducer,
         pm10: pm10Reducer,
         pm25: pm25Reducer,
