@@ -3,6 +3,7 @@ import {configureStore} from '@reduxjs/toolkit'
 
 // RESOURCES
 import {filterReducer} from "src/store/filter/filter.slice";
+import {availableSensorsReducer} from "src/store/filter/available-sensors.slice";
 import {humidityReducer} from "src/store/sensors/humidity.slice";
 import {pm10Reducer} from "src/store/sensors/pm10.slice";
 import {pm25Reducer} from "src/store/sensors/pm25.slice";
@@ -13,6 +14,7 @@ import {windReducer} from "src/store/sensors/wind.slice";
 export const store = configureStore({
     reducer: {
         filter: filterReducer,
+        availableSensors: availableSensorsReducer,
         humidity: humidityReducer,
         pm10: pm10Reducer,
         pm25: pm25Reducer,

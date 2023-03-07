@@ -1,5 +1,5 @@
 // MODULES
-import React, {useCallback, useMemo} from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import useWebSocket from "react-use-websocket";
 
 // COMPONENTS
@@ -18,6 +18,7 @@ import {updatePressure, selectPressureSensorState} from "src/store/sensors/press
 import {updateTemperature, selectTemperatureSensorState} from "src/store/sensors/temperature.slice";
 import {updateWind, selectWindSensorState} from "src/store/sensors/wind.slice";
 import {selectFilterState} from "src/store/filter/filter.slice";
+import {set} from "src/store/filter/available-sensors.slice";
 
 function App() {
     const dispatch = useAppDispatch();
@@ -66,6 +67,10 @@ function App() {
     });
 
     const handleSendMessage = useCallback(() => sendMessage('Hello'), [sendMessage]);
+
+    useEffect(() => {
+        dispatch(set(data.length));
+    }, [data])
 
     const renderSensorTiles = useMemo(() => {
         if (filterEnabled) {
