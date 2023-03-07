@@ -6,6 +6,7 @@ const container: Interpolation<Theme> = ({ color, effects, spacing }: Theme) => 
     borderRadius: 6,
     boxShadow: effects.shadow,
     padding: `${spacing.s / 2}px ${spacing.s}px`,
+    boxSizing: 'border-box',
 
     color: color.text,
     textAlign: 'center',
@@ -16,7 +17,7 @@ const container: Interpolation<Theme> = ({ color, effects, spacing }: Theme) => 
     alignItems: 'center',
     gap: spacing.xl,
 
-    width: 570,
+    width: '100%',
 });
 
 const icon: Interpolation<Theme> = {
