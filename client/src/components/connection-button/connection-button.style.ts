@@ -1,9 +1,15 @@
 // MODULES
 import {Interpolation, Theme} from '@emotion/react';
 
-const style: Interpolation<Theme> = ({color}: Theme) => ({
+// RESOURCES
+import {palette} from "src/styles/palette.styles";
+
+const travel = {
+    male: -2,
+    female: 3,
+}
+const container: Interpolation<Theme> = {
     background: 'none',
-    border: 'none',
     height: 32,
     width: 32,
     borderRadius: 16,
@@ -12,15 +18,71 @@ const style: Interpolation<Theme> = ({color}: Theme) => ({
     alignItems: 'center',
     transition: '0.3s',
     cursor: 'pointer',
+    transform: 'rotate(-45deg)',
+};
+const connected: Interpolation<Theme> = {
+    border: `1px solid ${palette.utilitary.connected}`,
 
     svg: {
-        fill: color.text,
+        fill: palette.utilitary.connected,
+    },
+
+    '#connection-socket-female': {
+        transition: '0.3s',
+        transform: `translate(${travel.female}px)`,
+    },
+
+    '#connection-socket-male': {
+        transition: '0.3s',
+        transform: `translate(${travel.male}px)`,
     },
 
     ':hover': {
-        backgroundColor: 'rgba(0,0,0,0.2)',
         transition: '0.3s',
-    }
-});
+        border: `1px solid ${palette.utilitary.disconnected}`,
 
-export {style};
+        svg: {
+            fill: palette.utilitary.disconnected,
+        },
+
+        '#connection-socket-female': {
+            transition: '0.3s',
+            transform: `translate(0px)`,
+        },
+
+        '#connection-socket-male': {
+            transition: '0.3s',
+            transform: `translate(0px)`,
+        },
+    }
+};
+const disconnected: Interpolation<Theme> = {
+    border: `1px solid ${palette.utilitary.disconnected}`,
+
+    svg: {
+        fill: palette.utilitary.disconnected,
+    },
+
+    ':hover': {
+        transition: '0.3s',
+        border: `1px solid ${palette.utilitary.connected}`,
+
+        svg: {
+            fill: palette.utilitary.connected,
+        },
+
+        '#connection-socket-female': {
+            transition: '0.3s',
+            transform: `translate(${travel.female}px)`,
+        },
+
+        '#connection-socket-male': {
+            transition: '0.3s',
+            transform: `translate(${travel.male}px)`,
+        },
+    }
+};
+
+export {container, connected, disconnected};
+
+//   TODO: Put transition in effects
