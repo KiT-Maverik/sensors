@@ -20,6 +20,6 @@ export const  windSlice = createSlice({
 
 export const { updateWind } = windSlice.actions;
 
-export const selectWindSensorState = (state: RootState) => state.wind;
+export const selectWindSensorState = (state: RootState) => state.sensors.wind;
 
 export const windReducer = windSlice.reducer;

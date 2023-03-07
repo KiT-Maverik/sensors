@@ -20,6 +20,6 @@ export const  pm10Slice = createSlice({
 
 export const { updatePM10 } = pm10Slice.actions;
 
-export const selectPM10SensorState = (state: RootState) => state.pm10;
+export const selectPM10SensorState = (state: RootState) => state.sensors.pm10;
 
 export const pm10Reducer = pm10Slice.reducer;

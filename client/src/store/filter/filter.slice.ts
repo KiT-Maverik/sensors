@@ -27,6 +27,6 @@ export const  filterSlice = createSlice({
 
 export const { enable, disable } = filterSlice.actions;
 
-export const selectFilterState = (state: RootState) => state.filter.enabled;
+export const selectFilterState = (state: RootState) => state.filter.status.enabled;
 
 export const filterReducer = filterSlice.reducer;

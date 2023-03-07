@@ -20,6 +20,6 @@ export const  pm25Slice = createSlice({
 
 export const { updatePM25 } = pm25Slice.actions;
 
-export const selectPM25SensorState = (state: RootState) => state.pm25;
+export const selectPM25SensorState = (state: RootState) => state.sensors.pm25;
 
 export const pm25Reducer = pm25Slice.reducer;

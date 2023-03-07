@@ -20,6 +20,6 @@ export const  humiditySlice = createSlice({
 
 export const { updateHumidity } = humiditySlice.actions;
 
-export const selectHumiditySensorState = (state: RootState) => state.humidity;
+export const selectHumiditySensorState = (state: RootState) => state.sensors.humidity;
 
 export const humidityReducer = humiditySlice.reducer;

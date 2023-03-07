@@ -20,6 +20,6 @@ export const  temperatureSlice = createSlice({
 
 export const { updateTemperature } = temperatureSlice.actions;
 
-export const selectTemperatureSensorState = (state: RootState) => state.temperature;
+export const selectTemperatureSensorState = (state: RootState) => state.sensors.temperature;
 
 export const temperatureReducer = temperatureSlice.reducer;

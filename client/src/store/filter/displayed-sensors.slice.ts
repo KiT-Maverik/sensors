@@ -24,6 +24,6 @@ export const  displayedSensorsSlice = createSlice({
 
 export const { set } = displayedSensorsSlice.actions;
 
-export const selectDisplayedSensorsState = (state: RootState) => state.displayedSensors.qty;
+export const selectDisplayedSensorsState = (state: RootState) => state.filter.displayedSensors.qty;
 
 export const displayedSensorsReducer = displayedSensorsSlice.reducer;

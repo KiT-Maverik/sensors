@@ -20,6 +20,6 @@ export const  pressureSlice = createSlice({
 
 export const { updatePressure } = pressureSlice.actions;
 
-export const selectPressureSensorState = (state: RootState) => state.pressure;
+export const selectPressureSensorState = (state: RootState) => state.sensors.pressure;
 
 export const pressureReducer = pressureSlice.reducer;
