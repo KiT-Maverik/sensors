@@ -84,5 +84,3 @@ const disconnected: Interpolation<Theme> = {
 };
 
 export {container, connected, disconnected};
-
-//   TODO: Put transition in effects
