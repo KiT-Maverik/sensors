@@ -17,6 +17,7 @@ import * as style from 'src/components/sensor-tile/sensor-tile.style';
  *
  */
 export const SensorTile = ({id, name, connected, unit, value }: ISensorData) => {
+
     return (
             <div css={style.container}>
                 <div css={style.icon}>
