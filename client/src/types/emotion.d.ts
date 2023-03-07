@@ -31,5 +31,3 @@ declare module '@emotion/react' {
 		}
 	}
 }
-
-// TODO: make necessary changes to Theme type
