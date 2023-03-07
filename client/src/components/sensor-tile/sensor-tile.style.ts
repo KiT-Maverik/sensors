@@ -7,10 +7,14 @@ const container: Interpolation<Theme> = ({ color, effects, spacing }: Theme) => 
     boxShadow: effects.shadow,
     padding: `${spacing.s / 2}px ${spacing.s}px`,
 
-    display: 'flex',
+    color: color.text,
+    textAlign: 'center',
+
+    display: 'grid',
+    gridTemplateColumns: 'auto auto 1fr 1fr auto',
     justifyContent: 'space-between',
     alignItems: 'center',
-    color: color.text,
+    gap: spacing.xl,
 
     width: 570,
 });
@@ -23,7 +27,5 @@ const icon: Interpolation<Theme> = {
     justifyContent: 'center',
     alignItems: 'center',
 };
-
-
 
 export { container, icon };
