@@ -3,10 +3,8 @@ import React, {useCallback, useMemo} from 'react';
 import useWebSocket from "react-use-websocket";
 
 // COMPONENTS
-import {Footer} from "src/components/footer/footer";
-import {Header} from "src/components/header/header";
-import {Label} from "src/components/label/label";
 import {SensorTile} from "src/components/sensor-tile/sensor-tile";
+import {Typography} from "src/components/typography/typography";
 
 // RESOURCES
 import {useAppDispatch, useAppSelector} from "src/store/hooks";
@@ -20,7 +18,9 @@ import {updateWind, selectWindSensorState} from "src/store/sensors/wind.slice";
 import {selectFilterState} from "src/store/filter/filter.slice";
 import {set as setAvailableSensors} from "src/store/filter/available-sensors.slice";
 import {set as setDisplayedSensors} from "src/store/filter/displayed-sensors.slice";
-import {Typography} from "src/components/typography/typography";
+
+// STYLES
+import {noRecords} from "src/components/sensors-grid/sensors-grid.style";
 
 export const SensorsGrid = () => {
     const dispatch = useAppDispatch();
@@ -79,7 +79,7 @@ export const SensorsGrid = () => {
 
             dispatch(setDisplayedSensors(diplayedSensors));
 
-            if (!diplayedSensors) return <Typography variant="Heading 2">No records</Typography>
+            if (!diplayedSensors) return <Typography variant="Heading 2" css={noRecords}>No records</Typography>
 
             return filteredData.map(sensor => <SensorTile {...sensor}/>)
         }
