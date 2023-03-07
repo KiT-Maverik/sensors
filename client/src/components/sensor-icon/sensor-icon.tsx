@@ -43,5 +43,3 @@ export const SensorIcon = ({ sensor }: ISensorIconProps) => {
         }
     }, [sensor]);
 };
-
-// TODO: redo pm25 and pm10 icons
