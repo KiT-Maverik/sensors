@@ -61,6 +61,7 @@ wss.on("connection", function (r) {
         : console.log("Unhandled message");
   }),
     sensors.forEach(function (e) {
+        console.log(JSON.stringify(generateSensor(e)));
       r.send(JSON.stringify(generateSensor(e)));
     }),
     initialized ||
