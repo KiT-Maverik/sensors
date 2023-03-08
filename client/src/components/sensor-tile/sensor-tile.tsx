@@ -16,6 +16,8 @@ import {generateSensorMock} from "src/utils/sensor.utils";
 
 // STYLE
 import * as style from 'src/components/sensor-tile/sensor-tile.style';
+import {useAppSelector} from "src/store/hooks";
+import {selectFilterState} from "src/store/filter/filter.slice";
 
 interface ISensorTileProps {
     type: TSensors
@@ -26,6 +28,7 @@ interface ISensorTileProps {
  */
 export const SensorTile = ({type}: ISensorTileProps) => {
     const [sensorData, setSensorData] = useState<ISensorData>(generateSensorMock(type));
+    const filterEnabled = useAppSelector(selectFilterState);
 
     const resetSensor = useCallback(() => setSensorData({
         ...sensorData,
@@ -41,6 +44,8 @@ export const SensorTile = ({type}: ISensorTileProps) => {
             if (data.name === type) setSensorData(data);
         },
     });
+
+    if (filterEnabled && !sensorData.connected) return null;
 
     return (
             <div css={style.container}>
