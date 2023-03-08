@@ -13,11 +13,11 @@ import {ConnectionButton} from "src/components/connection-button/connection-butt
 // RESOURCES
 import {ISensorData, TSensors} from "src/types/generic";
 import {generateSensorMock} from "src/utils/sensor.utils";
+import {useAppSelector} from "src/store/hooks";
+import {selectFilterState} from "src/store/filter/filter.slice";
 
 // STYLE
 import * as style from 'src/components/sensor-tile/sensor-tile.style';
-import {useAppSelector} from "src/store/hooks";
-import {selectFilterState} from "src/store/filter/filter.slice";
 
 interface ISensorTileProps {
     type: TSensors
