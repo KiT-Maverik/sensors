@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 
 // MODULES
-import {useCallback, useMemo, useState} from "react";
+import {useCallback, useMemo} from "react";
+import useWebSocket from "react-use-websocket";
 
 //COMPONENTS
 import {ReactComponent as SocketMaleIcon} from "src/resources/socket_male.svg";
@@ -13,34 +14,34 @@ import * as style from 'src/components/connection-button/connection-button.style
 interface IConnectionButtonProps {
     connected: boolean;
     sensorId: string;
+    resetSensor: () => void;
 }
 
 /**
  *
  */
-export const ConnectionButton = ({connected, sensorId}: IConnectionButtonProps) => {
-    const [isConnected, setConnected] = useState(false);
+export const ConnectionButton = ({connected, sensorId, resetSensor}: IConnectionButtonProps) => {
+    const {sendJsonMessage} = useWebSocket('ws://localhost:5001');
 
     const handleSensorConnect = useCallback(() => {
-        setConnected(true);
-        console.log('Sensor connected');
-    }, []);
+        sendJsonMessage({command: 'connect', id: sensorId});
+    }, [sensorId]);
 
     const handleSensorDisconnect = useCallback(() => {
-        setConnected(false);
-        console.log('Sensor disconnected');
-    }, []);
+        sendJsonMessage({command: 'disconnect', id: sensorId});
+        resetSensor();
+    }, [sensorId]);
 
     const renderIcon = useMemo(() => {
         return (
             <button
-                css={[style.container, (isConnected) ? style.connected : style.disconnected]}
-                onClick={(isConnected) ? handleSensorDisconnect : handleSensorConnect}>
+                css={[style.container, (connected) ? style.connected : style.disconnected]}
+                onClick={() => (connected) ? handleSensorDisconnect() : handleSensorConnect()}>
                 <SocketFemaleIcon/>
                 <SocketMaleIcon/>
             </button>
         )
-    }, [handleSensorConnect, isConnected]);
+    }, [handleSensorConnect, handleSensorDisconnect, connected]);
 
     return renderIcon;
 };

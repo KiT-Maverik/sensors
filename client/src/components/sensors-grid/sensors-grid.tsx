@@ -1,41 +1,24 @@
 // MODULES
-import React, {useCallback, useMemo} from 'react';
+import React from 'react';
 import useWebSocket from "react-use-websocket";
 
 // COMPONENTS
 import {SensorTile} from "src/components/sensor-tile/sensor-tile";
-import {Typography} from "src/components/typography/typography";
 
 // RESOURCES
-import {useAppDispatch, useAppSelector} from "src/store/hooks";
+import {useAppDispatch} from "src/store/hooks";
 import {ISensorData} from "src/types/generic";
-import {updateHumidity, selectHumiditySensorState} from "src/store/sensors/humidity.slice";
-import {updatePM10, selectPM10SensorState} from "src/store/sensors/pm10.slice";
-import {updatePM25, selectPM25SensorState} from "src/store/sensors/pm25.slice";
-import {updatePressure, selectPressureSensorState} from "src/store/sensors/pressure.slice";
-import {updateTemperature, selectTemperatureSensorState} from "src/store/sensors/temperature.slice";
-import {updateWind, selectWindSensorState} from "src/store/sensors/wind.slice";
-import {selectFilterState} from "src/store/filter/filter.slice";
-import {set as setAvailableSensors} from "src/store/filter/available-sensors.slice";
-import {set as setDisplayedSensors} from "src/store/filter/displayed-sensors.slice";
-
-// STYLES
-import {noRecords} from "src/components/sensors-grid/sensors-grid.style";
+import {updateHumidity} from "src/store/sensors/humidity.slice";
+import {updatePM10} from "src/store/sensors/pm10.slice";
+import {updatePM25} from "src/store/sensors/pm25.slice";
+import {updatePressure} from "src/store/sensors/pressure.slice";
+import {updateTemperature} from "src/store/sensors/temperature.slice";
+import {updateWind} from "src/store/sensors/wind.slice";
 
 export const SensorsGrid = () => {
     const dispatch = useAppDispatch();
 
-    const filterEnabled = useAppSelector(selectFilterState);
-
-    const humidityData = useAppSelector(selectHumiditySensorState);
-    const pm10Data = useAppSelector(selectPM10SensorState);
-    const pm25Data = useAppSelector(selectPM25SensorState);
-    const pressureData = useAppSelector(selectPressureSensorState);
-    const temperatureData = useAppSelector(selectTemperatureSensorState);
-    const windData = useAppSelector(selectWindSensorState);
-    const data = [humidityData, pm10Data, pm25Data, pressureData, temperatureData, windData];
-
-    const {sendMessage} = useWebSocket('ws://localhost:5001', {
+    useWebSocket('ws://localhost:5001', {
         onMessage: e => {
             const data: ISensorData = JSON.parse(e.data);
 
@@ -68,26 +51,12 @@ export const SensorsGrid = () => {
         },
     });
 
-    const handleSendMessage = useCallback(() => sendMessage('Hello'), [sendMessage]);
-
-    const renderSensorTiles =  useMemo(() => {
-        dispatch(setAvailableSensors(data.length));
-
-        if (filterEnabled) {
-            const filteredData = data.filter(({connected}) => connected);
-            const diplayedSensors = filteredData.length;
-
-            dispatch(setDisplayedSensors(diplayedSensors));
-
-            if (!diplayedSensors) return <Typography variant="Heading 2" css={noRecords}>No records</Typography>
-
-            return filteredData.map(sensor => <SensorTile {...sensor}/>)
-        }
-
-        dispatch(setDisplayedSensors(data.length));
-
-        return data.map(sensor => <SensorTile key={sensor.name} {...sensor}/>);
-    }, [filterEnabled, data, dispatch]);
-
-    return (<>{renderSensorTiles}</>)
+    return (<>
+        <SensorTile type="Humidity"/>
+        <SensorTile type="PM2.5"/>
+        <SensorTile type="PM10"/>
+        <SensorTile type="Pressure"/>
+        <SensorTile type="Temperature"/>
+        <SensorTile type="Wind"/>
+    </>)
 }
